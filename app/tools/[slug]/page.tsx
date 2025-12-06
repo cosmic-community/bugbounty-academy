@@ -5,6 +5,7 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import CodeBlock from '@/components/CodeBlock'
+import type { Tool } from '@/types'
 
 interface ToolPageProps {
   params: Promise<{ slug: string }>;
@@ -12,7 +13,7 @@ interface ToolPageProps {
 
 export async function generateStaticParams() {
   const tools = await getTools();
-  return tools.map((tool) => ({
+  return tools.map((tool: Tool) => ({
     slug: tool.slug,
   }));
 }

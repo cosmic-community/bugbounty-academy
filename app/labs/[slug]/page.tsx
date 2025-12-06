@@ -5,6 +5,7 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import CodeBlock from '@/components/CodeBlock'
+import type { LabExercise } from '@/types'
 
 interface LabPageProps {
   params: Promise<{ slug: string }>;
@@ -12,7 +13,7 @@ interface LabPageProps {
 
 export async function generateStaticParams() {
   const labs = await getLabExercises();
-  return labs.map((lab) => ({
+  return labs.map((lab: LabExercise) => ({
     slug: lab.slug,
   }));
 }

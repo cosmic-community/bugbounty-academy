@@ -3,6 +3,7 @@ import { getLearningModules, getLabExercises, getTools } from '@/lib/cosmic'
 import ModuleCard from '@/components/ModuleCard'
 import LabCard from '@/components/LabCard'
 import ToolCard from '@/components/ToolCard'
+import type { LearningModule, LabExercise, Tool } from '@/types'
 
 export default async function HomePage() {
   const [modules, labs, tools] = await Promise.all([
@@ -61,7 +62,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredModules.map((module) => (
+          {featuredModules.map((module: LearningModule) => (
             <ModuleCard key={module.id} module={module} />
           ))}
         </div>
@@ -76,7 +77,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredLabs.map((lab) => (
+          {featuredLabs.map((lab: LabExercise) => (
             <LabCard key={lab.id} lab={lab} />
           ))}
         </div>
@@ -91,7 +92,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredTools.map((tool) => (
+          {featuredTools.map((tool: Tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}
         </div>

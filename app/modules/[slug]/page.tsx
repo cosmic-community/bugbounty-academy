@@ -5,6 +5,7 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import CodeBlock from '@/components/CodeBlock'
+import type { LearningModule } from '@/types'
 
 interface ModulePageProps {
   params: Promise<{ slug: string }>;
@@ -12,7 +13,7 @@ interface ModulePageProps {
 
 export async function generateStaticParams() {
   const modules = await getLearningModules();
-  return modules.map((module) => ({
+  return modules.map((module: LearningModule) => ({
     slug: module.slug,
   }));
 }
