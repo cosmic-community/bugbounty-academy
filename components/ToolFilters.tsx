@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import ToolCard from './ToolCard'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { Tool } from '@/types'
 
 interface ToolFiltersProps {
@@ -9,6 +10,7 @@ interface ToolFiltersProps {
 }
 
 export default function ToolFilters({ tools }: ToolFiltersProps) {
+  const { t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [showFreeOnly, setShowFreeOnly] = useState<boolean>(false)
 
@@ -30,13 +32,13 @@ export default function ToolFilters({ tools }: ToolFiltersProps) {
     <div>
       <div className="mb-8 flex flex-wrap gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Category</label>
+          <label className="block text-sm font-medium mb-2">{t.tools.category}</label>
           <select 
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="bg-dark-surface border border-dark-border rounded-lg px-4 py-2"
           >
-            <option value="all">All Categories</option>
+            <option value="all">{t.tools.allCategories}</option>
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
@@ -51,7 +53,7 @@ export default function ToolFilters({ tools }: ToolFiltersProps) {
               onChange={(e) => setShowFreeOnly(e.target.checked)}
               className="w-4 h-4"
             />
-            <span className="text-sm">Free Only</span>
+            <span className="text-sm">{t.tools.freeOnly}</span>
           </label>
         </div>
       </div>
@@ -64,7 +66,7 @@ export default function ToolFilters({ tools }: ToolFiltersProps) {
 
       {filteredTools.length === 0 && (
         <div className="text-center py-12 text-slate-400">
-          No tools found matching your criteria.
+          {t.tools.noToolsFound}
         </div>
       )}
     </div>

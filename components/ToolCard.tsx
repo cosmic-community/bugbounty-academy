@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { Tool } from '@/types'
 
 interface ToolCardProps {
@@ -6,6 +9,8 @@ interface ToolCardProps {
 }
 
 export default function ToolCard({ tool }: ToolCardProps) {
+  const { t } = useLanguage()
+  
   if (!tool.metadata) {
     return null;
   }
@@ -19,9 +24,9 @@ export default function ToolCard({ tool }: ToolCardProps) {
           </span>
         )}
         {tool.metadata.is_free ? (
-          <span className="badge bg-success/20 text-success">Free</span>
+          <span className="badge bg-success/20 text-success">{t.tools.free}</span>
         ) : (
-          <span className="badge bg-warning/20 text-warning">Paid</span>
+          <span className="badge bg-warning/20 text-warning">{t.tools.paid}</span>
         )}
       </div>
       
@@ -37,10 +42,10 @@ export default function ToolCard({ tool }: ToolCardProps) {
       
       <div className="mt-4 flex gap-2">
         {tool.metadata.official_website && (
-          <span className="text-xs text-slate-500">🌐 Website</span>
+          <span className="text-xs text-slate-500">🌐 {t.common.website}</span>
         )}
         {tool.metadata.github_repo && (
-          <span className="text-xs text-slate-500">💻 GitHub</span>
+          <span className="text-xs text-slate-500">💻 {t.common.github}</span>
         )}
       </div>
     </Link>

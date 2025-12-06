@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { LearningModule } from '@/types'
 
 interface ModuleCardProps {
@@ -6,6 +9,8 @@ interface ModuleCardProps {
 }
 
 export default function ModuleCard({ module }: ModuleCardProps) {
+  const { t } = useLanguage()
+  
   if (!module.metadata) {
     return null;
   }

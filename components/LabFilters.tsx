@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import LabCard from './LabCard'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { LabExercise } from '@/types'
 
 interface LabFiltersProps {
@@ -9,6 +10,7 @@ interface LabFiltersProps {
 }
 
 export default function LabFilters({ labs }: LabFiltersProps) {
+  const { t } = useLanguage()
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all')
   const [selectedType, setSelectedType] = useState<string>('all')
 
@@ -36,13 +38,13 @@ export default function LabFilters({ labs }: LabFiltersProps) {
     <div>
       <div className="mb-8 flex flex-wrap gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Difficulty</label>
+          <label className="block text-sm font-medium mb-2">{t.labs.difficulty}</label>
           <select 
             value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)}
             className="bg-dark-surface border border-dark-border rounded-lg px-4 py-2"
           >
-            <option value="all">All Levels</option>
+            <option value="all">{t.labs.allLevels}</option>
             {difficulties.map(diff => (
               <option key={diff} value={diff}>{diff}</option>
             ))}
@@ -50,13 +52,13 @@ export default function LabFilters({ labs }: LabFiltersProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Vulnerability Type</label>
+          <label className="block text-sm font-medium mb-2">{t.labs.vulnerabilityType}</label>
           <select 
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
             className="bg-dark-surface border border-dark-border rounded-lg px-4 py-2"
           >
-            <option value="all">All Types</option>
+            <option value="all">{t.labs.allTypes}</option>
             {types.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
@@ -72,7 +74,7 @@ export default function LabFilters({ labs }: LabFiltersProps) {
 
       {filteredLabs.length === 0 && (
         <div className="text-center py-12 text-slate-400">
-          No labs found matching your criteria.
+          {t.labs.noLabsFound}
         </div>
       )}
     </div>

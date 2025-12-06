@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import ModuleCard from './ModuleCard'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { LearningModule } from '@/types'
 
 interface ModuleFiltersProps {
@@ -9,6 +10,7 @@ interface ModuleFiltersProps {
 }
 
 export default function ModuleFilters({ modules }: ModuleFiltersProps) {
+  const { t } = useLanguage()
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
@@ -36,13 +38,13 @@ export default function ModuleFilters({ modules }: ModuleFiltersProps) {
     <div>
       <div className="mb-8 flex flex-wrap gap-4">
         <div>
-          <label className="block text-sm font-medium mb-2">Difficulty</label>
+          <label className="block text-sm font-medium mb-2">{t.modules.difficulty}</label>
           <select 
             value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)}
             className="bg-dark-surface border border-dark-border rounded-lg px-4 py-2"
           >
-            <option value="all">All Levels</option>
+            <option value="all">{t.modules.allLevels}</option>
             {difficulties.map(diff => (
               <option key={diff} value={diff}>{diff}</option>
             ))}
@@ -50,13 +52,13 @@ export default function ModuleFilters({ modules }: ModuleFiltersProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Category</label>
+          <label className="block text-sm font-medium mb-2">{t.modules.category}</label>
           <select 
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="bg-dark-surface border border-dark-border rounded-lg px-4 py-2"
           >
-            <option value="all">All Categories</option>
+            <option value="all">{t.modules.allCategories}</option>
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
@@ -72,7 +74,7 @@ export default function ModuleFilters({ modules }: ModuleFiltersProps) {
 
       {filteredModules.length === 0 && (
         <div className="text-center py-12 text-slate-400">
-          No modules found matching your criteria.
+          {t.modules.noModulesFound}
         </div>
       )}
     </div>
