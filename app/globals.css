@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+  }
+
+  body {
+    @apply bg-dark-bg text-slate-50 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  a {
+    @apply text-primary hover:text-primary-dark transition-colors;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-primary transition-all;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all inline-flex items-center gap-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary hover:bg-primary-dark text-white;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary hover:bg-secondary-dark text-white;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-beginner {
+    @apply badge bg-success/20 text-success;
+  }
+
+  .badge-intermediate {
+    @apply badge bg-warning/20 text-warning;
+  }
+
+  .badge-advanced {
+    @apply badge bg-danger/20 text-danger;
+  }
+
+  .badge-expert {
+    @apply badge bg-purple-500/20 text-purple-400;
+  }
+}
+
+/* Markdown content styling */
+.markdown-content {
+  @apply text-slate-300 leading-relaxed;
+}
+
+.markdown-content h1 {
+  @apply text-3xl font-bold text-slate-50 mb-4 mt-8;
+}
+
+.markdown-content h2 {
+  @apply text-2xl font-bold text-slate-50 mb-3 mt-6;
+}
+
+.markdown-content h3 {
+  @apply text-xl font-bold text-slate-100 mb-2 mt-4;
+}
+
+.markdown-content p {
+  @apply mb-4;
+}
+
+.markdown-content ul, .markdown-content ol {
+  @apply mb-4 ml-6;
+}
+
+.markdown-content li {
+  @apply mb-2;
+}
+
+.markdown-content code {
+  @apply bg-dark-surface px-2 py-1 rounded text-sm font-mono text-primary;
+}
+
+.markdown-content pre {
+  @apply bg-dark-surface p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent p-0 text-slate-300;
+}
+
+.markdown-content a {
+  @apply text-primary hover:text-primary-dark underline;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-slate-400 my-4;
+}
